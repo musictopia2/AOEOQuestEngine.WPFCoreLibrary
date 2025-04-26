@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOEOQuestEngine.WPFCoreLibrary", "AOEOQuestEngine.WPFCoreLibrary.csproj", "{B14F0510-144B-470D-AD03-79A99A76E9BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B14F0510-144B-470D-AD03-79A99A76E9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14F0510-144B-470D-AD03-79A99A76E9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14F0510-144B-470D-AD03-79A99A76E9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14F0510-144B-470D-AD03-79A99A76E9BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {071A35E5-5C31-4654-A6F8-B1101DF4388A}
+	EndGlobalSection
+EndGlobal

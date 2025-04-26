@@ -1,0 +1,18 @@
+﻿global using CommonBasicLibraries.BasicDataSettingsAndProcesses;
+global using System.Drawing;
+global using CommonBasicLibraries.CollectionClasses;
+global using AOEOQuestEngine.CoreLibrary.Shared.Interfaces;
+global using AOEOQuestEngine.CoreLibrary.Shared.Models;
+global using AOEOQuestEngine.WPFCoreLibrary.Configurations;
+global using WindowsImageAbstractionsLibrary;
+global using AOEOQuestEngine.WPFCoreLibrary.Containers;
+global using WindowsGenericPopups.CoreLibrary;
+global using CommonBasicLibraries.BasicUIProcesses;
+global using aa1 = WindowsAutoClickerLibrary.AutoClickerHelpers;
+global using AOEOQuestEngine.CoreLibrary.Shared.Containers;
+global using System.Text.RegularExpressions;
+global using System.Diagnostics;
+global using Microsoft.Extensions.DependencyInjection;
+global using AOEOQuestEngine.CoreLibrary.Shared.Services;
+global using AOEOQuestEngine.WPFCoreLibrary.Services;
+global using WindowsGenericPopups.WPFCoreLibrary.Popups;

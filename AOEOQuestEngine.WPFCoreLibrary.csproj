@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RunPostBuildAppCondition Condition="'$(Configuration)' == 'Release'">true</RunPostBuildAppCondition>
+    <FeedType>Public</FeedType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CommonBasicLibraries" Version="9.0.30" />
+    <PackageReference Include="Musictopia.AOEOQuestEngine.CoreLibrary" Version="9.0.10" />
+    <PackageReference Include="Musictopia.WindowsImageAbstractionsLibrary" Version="9.0.3" />
+    <PackageReference Include="WindowsGenericPopups.CoreLibrary" Version="9.0.6" />
+    <PackageReference Include="WindowsGenericPopups.WPFCoreLibrary" Version="9.0.26" />
+    <PackageReference Include="WindowsAutoClickerLibrary" Version="9.0.3" />
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="C:\VS\OneNet\Apps\CommandLines\PostBuildPackageHandler\bin\Release\net9.0\PostBuildPackageHandler.exe $(ProjectName) $(ProjectDir) $(ProjectFileName) $(TargetDir)" Condition="'$(Configuration)' == 'Release' and '$(RunPostBuildAppCondition)' == 'true'" />
+  </Target>
+</Project>
