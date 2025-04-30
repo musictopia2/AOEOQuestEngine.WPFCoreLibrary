@@ -6,7 +6,7 @@ public static class ServiceExtensions
     /// </summary>
     /// <typeparam name="I">The implementation of <see cref="ICaptureGrayScaleMask"/> used to capture screen regions.</typeparam>
     /// <typeparam name="O">The implementation of <see cref="IOcrProcessor"/> used to extract text from screen captures.</typeparam>
-    /// <typeparam name="P">The implementation of <see cref="IClickLocationProvider"/> used to define click positions on the UI.</typeparam>
+    /// <typeparam name="P">The implementation of <see cref="IPostLaunchAction"/> used to define click positions on the UI.</typeparam>
     /// <param name="services">The service collection to register the dependencies with.</param>
     /// <returns>The updated <see cref="IServiceCollection"/> for chaining.</returns>
     /// <remarks>
@@ -19,7 +19,7 @@ public static class ServiceExtensions
     public static IServiceCollection RegisterQuestEngineWindowsOcrAutoclicking<I, O, P>(this IServiceCollection services)
         where I : class, ICaptureGrayScaleMask
         where O : class, IOcrProcessor
-        where P : class, IClickLocationProvider
+        where P : class, IPostLaunchAction
     {
         services.AddSingleton<ICaptureGrayScaleMask, I>()
             .AddSingleton<IOcrProcessor, O>()
@@ -35,7 +35,7 @@ public static class ServiceExtensions
     /// <summary>
     /// Registers the services needed for quest automation via autoclicking only (without OCR).
     /// </summary>
-    /// <typeparam name="P">The implementation of <see cref="IClickLocationProvider"/> used to define click positions on the UI.</typeparam>
+    /// <typeparam name="P">The implementation of <see cref="IPostLaunchAction"/> used to define click positions on the UI.</typeparam>
     /// <param name="services">The service collection to register the dependencies with.</param>
     /// <returns>The updated <see cref="IServiceCollection"/> for chaining.</returns>
     /// <remarks>
@@ -45,7 +45,7 @@ public static class ServiceExtensions
     /// It includes popup registration, click container management, and quest monitoring stub logic.
     /// </remarks>
     public static IServiceCollection RegisterQuestEngineWindowsAutoclickingOnly<P>(this IServiceCollection services)
-        where P : class, IClickLocationProvider
+        where P : class, IPostLaunchAction
     {
         services.RegisterAutoClickServices<P>()
             .AddSingleton<ISpartanLaunchHandler, SpartanLaunchPopupHandler>()
@@ -58,7 +58,7 @@ public static class ServiceExtensions
     /// <summary>
     /// Registers services required for supporting autoclicking functionality.
     /// </summary>
-    /// <typeparam name="P">The implementation of <see cref="IClickLocationProvider"/> for click location setup.</typeparam>
+    /// <typeparam name="P">The implementation of <see cref="IPostLaunchAction"/> for click location setup.</typeparam>
     /// <param name="services">The service collection to register the dependencies with.</param>
     /// <returns>The updated <see cref="IServiceCollection"/> for chaining.</returns>
     /// <remarks>
@@ -66,11 +66,11 @@ public static class ServiceExtensions
     /// It is used by both OCR and non-OCR based automation setups.
     /// </remarks>
     private static IServiceCollection RegisterAutoClickServices<P>(this IServiceCollection services)
-        where P : class, IClickLocationProvider
+        where P : class, IPostLaunchAction
     {
         services.AddSingleton<ClickLocationContainer>()
             .RegisterDefaultPopups()
-            .AddSingleton<IClickLocationProvider, P>();
+            .AddSingleton<IPostLaunchAction, P>();
         return services;
     }
     /// <summary>
