@@ -1,5 +1,5 @@
 ﻿namespace AOEOQuestEngine.WPFCoreLibrary.Services;
-public class ToastQuestEnder(IOpenTimedPopup pop, IExit exit, ISpartanUtilities spartanUtilities) : ISpartaQuestEnded
+public class ToastQuestEnder(IOpenTimedPopup pop, IExit exit, ISpartanUtilities spartanUtilities, IQuestResultPersistenceService persist) : ISpartaQuestEnded
 {
     async Task ISpartaQuestEnded.EndQuestAsync(EnumSpartaQuestResult result, string time)
     {
@@ -18,6 +18,7 @@ public class ToastQuestEnder(IOpenTimedPopup pop, IExit exit, ISpartanUtilities 
         }
         await pop.OpenPopupAsync(message, 2000);
         spartanUtilities.ExitSpartan();
+        await persist.ClearPendingAsync();
         exit.ExitApp();
     }
 }

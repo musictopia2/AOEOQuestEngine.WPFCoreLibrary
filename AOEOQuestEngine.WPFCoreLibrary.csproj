@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommonBasicLibraries" Version="9.0.32" />
-    <PackageReference Include="Musictopia.AOEOQuestEngine.CoreLibrary" Version="9.0.82" />
+    <PackageReference Include="Musictopia.AOEOQuestEngine.CoreLibrary" Version="9.0.83" />
     <PackageReference Include="Musictopia.WindowsImageAbstractionsLibrary" Version="9.0.3" />
     <PackageReference Include="WindowsGenericPopups.CoreLibrary" Version="9.0.6" />
     <PackageReference Include="WindowsGenericPopups.WPFCoreLibrary" Version="9.0.26" />
