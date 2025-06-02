@@ -25,7 +25,6 @@ public static class ServiceExtensions
             .AddSingleton<IOcrProcessor, O>()
             .RegisterAutoClickServices<P>()
             .RegisterSpartanMonitoring()
-            .AddSingleton<IQuestResultPersistenceService, NoOpQuestResultPersistanceService>()
             .AddSingleton<ISpartanLaunchHandler, OcrDetectionSpartanLaunchHandler>()
             .AddSingleton<ISpartanQuestRequested, SpartanQuestResultMonitor>()
             .AddSingleton<ISpartanReady, QuestAutoClicker>()
