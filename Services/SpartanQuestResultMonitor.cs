@@ -3,7 +3,8 @@ public partial class SpartanQuestResultMonitor(
     ICaptureGrayScaleMask capture
     , IOcrProcessor ocr,
     ISpartanMonitor monitor,
-    ISpartaQuestEnded end
+    ISpartaQuestEnded end,
+    IQuestResultPersistenceService possibleRecover
     ) : ISpartanQuestRequested
 {
     async void ISpartanQuestRequested.Monitor()
@@ -20,7 +21,15 @@ public partial class SpartanQuestResultMonitor(
             if (result != EnumSpartaQuestResult.Ongoing)
             {
                 string time = await GetTimeAsync(token);
-                end.EndQuest(result, time);
+                //put somewhere so i can recover later.
+                QuestResultModel item = new()
+                {
+                    Result = result,
+                    Time = time
+                };
+                //has to figure out how to save the results.
+                await possibleRecover.SaveAsync(item);
+                await end.EndQuestAsync(result, time);
                 return;
             }
             try

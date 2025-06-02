@@ -1,7 +1,7 @@
 ﻿namespace AOEOQuestEngine.WPFCoreLibrary.Services;
 public class ToastQuestEnder(IOpenTimedPopup pop, IExit exit, ISpartanUtilities spartanUtilities) : ISpartaQuestEnded
 {
-    async void ISpartaQuestEnded.EndQuest(EnumSpartaQuestResult result, string time)
+    async Task ISpartaQuestEnded.EndQuestAsync(EnumSpartaQuestResult result, string time)
     {
         string message;
         if (result == EnumSpartaQuestResult.Completed)
