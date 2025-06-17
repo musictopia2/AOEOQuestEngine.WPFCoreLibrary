@@ -21,6 +21,25 @@ public partial class SpartanQuestResultMonitor(
             if (result != EnumSpartaQuestResult.Ongoing)
             {
                 string time = await GetTimeAsync(token);
+                const int maxRetries = 20;
+                int retries = 0;
+                //try up to 20 times here.
+                while (string.IsNullOrEmpty(time) && retries < maxRetries)
+                {
+                    await Task.Delay(1000, token); // wait 1 sec between retries
+                    time = await GetTimeAsync(token);
+                    retries++;
+                }
+
+                if (string.IsNullOrEmpty(time))
+                {
+                    // Could not get time after retries
+                    // You can either:
+                    // - Save with a placeholder time (e.g. "Unknown")
+                    // - Log a warning or handle accordingly
+                    time = "Unknown"; //makes the system crash but gives me hints
+                }
+
                 //put somewhere so i can recover later.
                 QuestResultModel item = new()
                 {
@@ -31,6 +50,7 @@ public partial class SpartanQuestResultMonitor(
                 await possibleRecover.SaveAsync(item);
                 await end.EndQuestAsync(result, time);
                 return;
+
             }
             try
             {
