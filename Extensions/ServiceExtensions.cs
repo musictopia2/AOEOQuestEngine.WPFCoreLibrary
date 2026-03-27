@@ -116,7 +116,7 @@ public static class ServiceExtensions
         {
             services.AddSingleton<ISpartanMonitor, SpartanMonitorService>()
                 .AddSingleton<ISpartanUtilities, SpartanUtilities>()
-                .AddSingleton<ISpartanExitHandler, SpartanExitHandler>();
+                .AddSingleton<ISpartanExitHandler, BasicSpartanExitHandler>();
             return services;
         }
     }

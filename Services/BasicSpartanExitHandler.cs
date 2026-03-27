@@ -1,20 +1,25 @@
 ﻿namespace AOEOQuestEngine.WPFCoreLibrary.Services;
-/// <summary>
-/// Handles the shutdown process when Spartan unexpectedly exits during a quest.
 /// </summary>
 /// <remarks>
 /// This handler is invoked by the monitoring system if Spartan closes while a quest is marked as active.
-/// It performs the following steps:
-/// - Stops the internal quest tracking state (via <see cref="QuestRunContainer"/>).
-/// - Shows a short popup message explaining at which stage Spartan exited.
-/// - If a custom fallback is provided in <see cref="QuestMonitoringEndingContainer.OnQuestFailed"/>, 
-///   that action will be executed — commonly to update the UI or show a toast.
-/// - If no custom action is provided, the application exits gracefully via <see cref="IExit"/>.
+/// It performs minimal cleanup and notification only.
 ///
-/// This class does not make assumptions about the UI layer — it only provides the mechanism to
-/// clean up and optionally notify higher-level systems when Spartan exits mid-run.
+/// Behavior:
+/// - Stops the internal quest tracking state (via <see cref="QuestRunContainer"/>).
+/// - Displays a short popup message indicating at which stage Spartan exited.
+/// - Invokes <see cref="QuestMonitoringEndingContainer.OnQuestFailed"/> if provided,
+///   allowing the UI layer to react (e.g., reload screen or show a toast).
+/// - If no failure callback is provided, the application exits via <see cref="IExit"/>.
+///
+/// Important:
+/// This handler does NOT execute the full quest failure pipeline (e.g., persistence cleanup,
+/// civilization evaluation, or replay state updates). It is intended for lightweight scenarios
+/// such as balancing or testing where full failure processing is not required.
+///
+/// This class does not make assumptions about the UI layer — it only provides minimal cleanup
+/// and optional notification when Spartan exits mid-run.
 /// </remarks>
-public class SpartanExitHandler(QuestMonitoringEndingContainer endingContainer,
+public class BasicSpartanExitHandler(QuestMonitoringEndingContainer endingContainer,
     IOpenTimedPopup pop,
     QuestRunContainer runContainer,
     IExit exit
