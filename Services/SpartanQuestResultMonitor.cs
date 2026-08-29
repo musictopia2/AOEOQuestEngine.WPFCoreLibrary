@@ -21,12 +21,12 @@ public partial class SpartanQuestResultMonitor(
             if (result != EnumSpartaQuestResult.Ongoing)
             {
                 string time = await GetTimeAsync(token);
-                const int maxRetries = 20;
+                const int maxRetries = 40;
                 int retries = 0;
                 //try up to 20 times here.
                 while (string.IsNullOrEmpty(time) && retries < maxRetries)
                 {
-                    await Task.Delay(1000, token); // wait 1 sec between retries
+                    await Task.Delay(600, token); // wait 1 sec between retries
                     time = await GetTimeAsync(token);
                     retries++;
                 }
@@ -54,7 +54,8 @@ public partial class SpartanQuestResultMonitor(
             }
             try
             {
-                await Task.Delay(5000, token); // optional: cancels delay if token is canceled
+                //has to try for every 2 seconds instead of 5 seconds to reduce the chances of not being able to capture the results.
+                await Task.Delay(2000, token); // optional: cancels delay if token is canceled
             }
             catch (TaskCanceledException)
             {
