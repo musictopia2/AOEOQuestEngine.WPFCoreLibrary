@@ -4,18 +4,18 @@
     <TargetFramework>net10.0-windows10.0.17763.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RunPostBuildAppCondition Condition="'$(Configuration)' == 'Release'">true</RunPostBuildAppCondition>
     <FeedType>Public</FeedType>
+    <RunPostBuildAppCondition Condition="'$(Configuration)' == 'Release'">true</RunPostBuildAppCondition>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommonBasicLibraries" Version="10.0.33" />
-    <PackageReference Include="Musictopia.AOEOQuestEngine.CoreLibrary" Version="10.0.29" />
+    <PackageReference Include="Musictopia2.CommonBasicLibraries" Version="10.0.1" />
+    <PackageReference Include="Musictopia2.AOEOQuestEngine.CoreLibrary" Version="10.0.1" />
     <PackageReference Include="Musictopia.WindowsImageAbstractionsLibrary" Version="10.0.12" />
-    <PackageReference Include="WindowsGenericPopups.CoreLibrary" Version="10.0.12" />
-    <PackageReference Include="WindowsGenericPopups.WPFCoreLibrary" Version="10.0.14" />
-    <PackageReference Include="WindowsAutoClickerLibrary" Version="10.0.12" />
+    <PackageReference Include="Musictopia2.WindowsGenericPopups.CoreLibrary" Version="10.0.1" />
+    <PackageReference Include="Musictopia2.WindowsGenericPopups.WPFCoreLibrary" Version="10.0.1" />
+    <PackageReference Include="Musictopia2.WindowsAutoClickerLibrary" Version="10.0.1" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="C:\VS\OneNet\Apps\CommandLines\PostBuildPackageHandler\bin\Release\net10.0\PostBuildPackageHandler.exe $(ProjectName) $(ProjectDir) $(ProjectFileName) $(TargetDir)" Condition="'$(Configuration)' == 'Release' and '$(RunPostBuildAppCondition)' == 'true'" />
+    <Exec Command="C:\VS\Apps\CommandLines\PostBuildPackageHandler\bin\Release\net10.0\PostBuildPackageHandler.exe $(ProjectName) $(ProjectDir) $(ProjectFileName) $(TargetDir)" Condition="'$(Configuration)' == 'Release' and '$(RunPostBuildAppCondition)' == 'true'" />
   </Target>
 </Project>
